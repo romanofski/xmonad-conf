@@ -1,12 +1,14 @@
 -- most things copied from:
 -- http://haskell.org/haskellwiki/Xmonad/Config_archive/31d1's_xmonad.hs
 import XMonad
+import Data.List    -- isInfixOf
 import qualified XMonad.StackSet as W
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.SetWMName
 
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.NoBorders
@@ -49,10 +51,17 @@ myLayout = avoidStruts $ toggleLayouts (noBorders Full)
         ratio   = 1/2
 
 
+--
 -- special windows
+-- resource (also known as appName) is the first element in WM_CLASS(STRING) 
+-- className is the second element in WM_CLASS(STRING)
+-- title is WM_NAME(STRING)
+-- http://www.haskell.org/haskellwiki/Xmonad/Frequently_asked_questions#I_need_to_find_the_class_title_or_some_other_X_property_of_my_program
+--
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
+    , fmap ("sun-awt-X11" `isInfixOf`) resource --> doFloat    -- java awt Windows e.g. dbvis
     , className =? "Aurora"         --> doShift "2:web"
     , className =? "Firefox"        --> doShift "2:web"
     , className =? "Opera"          --> doShift "2:web"
@@ -87,6 +96,6 @@ main = do
                                   , ppTitle = xmobarColor "green" "" . shorten 50
                                 }
         , handleEventHook    = ewmhDesktopsEventHook
-        , startupHook        = ewmhDesktopsStartup
+        , startupHook        = ewmhDesktopsStartup >> setWMName "LG3D"
         , workspaces         = myWorkspaces
 }
