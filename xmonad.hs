@@ -81,7 +81,7 @@ main = do
     xmonad $ defaultConfig {
         manageHook           = myManageHook
         , layoutHook         = myLayout
-        , terminal           = "gnome-terminal"
+        , terminal           = "terminator"
         , logHook            = dynamicLogWithPP xmobarPP
                                 { ppOutput = hPutStrLn xmproc
                                   , ppTitle = xmobarColor "green" "" . shorten 50
