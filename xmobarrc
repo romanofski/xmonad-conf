@@ -1,20 +1,22 @@
-Config { font = "xft:Source Code Pro-10"
+Config { font = "xft:Source Code Pro:pixelsize=12"
        , allDesktops = True
        , overrideRedirect = True
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
        , fgColor = "grey"
-       , position = Top
+       , position = TopW L 90
        , lowerOnStart = True
        , persistent = False
        , hideOnStart = False
-       , commands = [ Run Weather "YBBN" ["-t","BNE: <tempC>°C * <skyCondition>","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
-                    , Run Com "date" ["-u", "+%H:%M"] "berlin" 600
-                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
-                    , Run XMonadLog
+       , commands = [ Run Weather "YBBN" ["-t","<tempC>°C * <skyCondition>","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
+                    , Run Date "%a %b %_d %Y" "date" 36000
+                    , Run Date "%H:%M" "brisbane" 600
+                    , Run Com "/home/rjoost/bin/uvmeter" [] "uvmeter" 900
+                    , Run Network "br0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                    , Run DateZone "%a %H:%M:%S" "de_DE.UTF-8" "UTC" "berlin" 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ <fc=#ee9a00>%date%</fc> | BER: %berlin% | %YBBN% "
+       , template = "%br0% }{ <fc=#ee9a00>%date%</fc> | BER: %berlin% | BNE: %brisbane% - UV: %uvmeter% - %YBBN% "
        }
