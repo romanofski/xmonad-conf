@@ -86,15 +86,12 @@ myManageHook = composeAll
 myWorkspaces = ["1:main", "2:web", "3:virtualbox", "4:whatever"]
 
 main = do
-    xmproc <- spawnPipe "xmobar"
+    xmproc <- spawnPipe "~/.cabal/bin/xmobar -x 0"
     xmonad $ defaultConfig {
         manageHook           = myManageHook
         , layoutHook         = myLayout
         , terminal           = "terminator"
-        , logHook            = dynamicLogWithPP xmobarPP
-                                { ppOutput = hPutStrLn xmproc
-                                  , ppTitle = xmobarColor "green" "" . shorten 50
-                                }
+        , logHook            = dynamicLogString defaultPP >>= xmonadPropLog
         , handleEventHook    = ewmhDesktopsEventHook
         , startupHook        = ewmhDesktopsStartup >> setWMName "LG3D"
         , workspaces         = myWorkspaces
