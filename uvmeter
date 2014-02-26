@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+import urllib
+from lxml import etree
+
+
+UVXML = 'http://www.arpansa.gov.au/uvindex/realtime/xml/uvvalues.xml'
+
+
+def print_uv_level():
+    root = etree.parse(urllib.urlopen(UVXML))
+    uvindex = float(root.xpath('//location[@id="brisbane"]/index')[0].text)
+    print "<fc={color}>{uvindex}</fc>".format(uvindex=uvindex,
+                                              color=get_color(uvindex))
+
+
+def get_color(uvindex):
+    return (uvindex > 2.5) and "#FF0000" or "#00FF00"
+
+
+if __name__ == '__main__':
+    print_uv_level()

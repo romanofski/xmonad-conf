@@ -1,0 +1,13 @@
+Xautolock.time: 1
+Xautolock.locker: "xlock"
+Xautolock.killtime: 10
+Xautolock.killer: systemctl suspend
+Xautolock.corners: +00-
+Xautolock.cornerdelay: 3
+
+XLock.mode: matrix
+XLock.foreground: White
+XLock.background: Gray20
+XLock.echokeys: true
+XLock.usefirst: true
+XLock.echokey: *
