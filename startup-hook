@@ -1,0 +1,22 @@
+#!/bin/bash
+# set filetype=bash
+
+#
+# Checks if the process has already started. If not start it, otherwise
+# bail silently out.
+#
+function save_start {
+    if [ -z "$(pgrep ${1})" ]; then
+        $@ &
+    fi
+}
+
+#
+# Start my stuff.
+#
+for i in parcellite workrave pidgin hamster
+do
+    save_start $i;
+done
+
+save_start "gnome-keyring-daemon --start"

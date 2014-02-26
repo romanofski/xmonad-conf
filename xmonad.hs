@@ -92,6 +92,8 @@ main = do
         , terminal           = "terminator"
         , logHook            = dynamicLogString defaultPP >>= xmonadPropLog
         , handleEventHook    = ewmhDesktopsEventHook
-        , startupHook        = ewmhDesktopsStartup >> setWMName "LG3D"
+        , startupHook        = do
+            setWMName "LG3D"
+            spawn "~/.xmonad/startup-hook"
         , workspaces         = myWorkspaces
 }

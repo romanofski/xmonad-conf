@@ -19,3 +19,10 @@ Dependencies
 ------------
 
 * trayer
+
+Credits
+-------
+
+Kudos to the following config files/tutorials
+
+* https://github.com/davidbrewer/xmonad-ubuntu-conf
