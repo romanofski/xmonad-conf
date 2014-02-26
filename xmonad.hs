@@ -67,7 +67,6 @@ myManageHook = composeAll
     , className =? "Opera"          --> doShift "2:web"
     , className =? "VirtualBox"     --> doShift "3:virtualbox"
     , title     =? "glxgears"       --> doFloat
-    , className =? "Gnome-panel"    --> doIgnore
     , className =? "XVkbd"          --> doIgnore
     , className =? "Cellwriter"     --> doIgnore
     , className =? "Gtkdialog"      --> doFloat
