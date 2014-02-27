@@ -19,4 +19,4 @@ do
     save_start $i;
 done
 
-save_start "gnome-keyring-daemon --start"
+save_start "gnome-keyring-daemon" "--start"
