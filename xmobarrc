@@ -5,7 +5,7 @@ Config { font = "xft:Source Code Pro:pixelsize=12"
        , border = TopB
        , bgColor = "black"
        , fgColor = "grey"
-       , position = TopW L 90
+       , position = TopW L 85
        , lowerOnStart = True
        , persistent = False
        , hideOnStart = False
