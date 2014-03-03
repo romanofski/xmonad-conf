@@ -1,7 +1,5 @@
 Xautolock.time: 1
 Xautolock.locker: "xlock"
-Xautolock.killtime: 10
-Xautolock.killer: systemctl suspend
 Xautolock.corners: +00-
 Xautolock.cornerdelay: 3
 
