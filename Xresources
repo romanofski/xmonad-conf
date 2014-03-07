@@ -1,6 +1,6 @@
 Xautolock.time: 1
 Xautolock.locker: "xlock"
-Xautolock.corners: +00-
+Xautolock.corners: +0-0
 Xautolock.cornerdelay: 3
 
 XLock.mode: matrix
