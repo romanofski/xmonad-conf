@@ -18,5 +18,5 @@ Config { font = "xft:Source Code Pro:pixelsize=12"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%br0% }{ <fc=#ee9a00>%date%</fc> | BER: %berlin% | BNE: %brisbane% - UV: %uvmeter% - %YBBN% "
+       , template = "%br0% }{ <fc=#ee9a00>%date%</fc> %brisbane% - UV: %uvmeter% - %YBBN% | BER: %berlin% "
        }
