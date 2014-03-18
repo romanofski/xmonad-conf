@@ -23,6 +23,7 @@ import XMonad.Util.Run
 import XMonad.Util.Scratchpad
 import XMonad.Util.WorkspaceCompare
 import XMonad.Util.XSelection
+import XMonad.Util.EZConfig (additionalKeys)
 
 import XMonad.Actions.UpdatePointer
 
@@ -96,4 +97,4 @@ main = do
             ewmhDesktopsStartup >> setWMName "LG3D"
             spawn "~/.xmonad/startup-hook"
         , workspaces         = myWorkspaces
-}
+    } `additionalKeys` [((mod1Mask .|. shiftMask, xK_l), spawn "xautolock -locknow")]
