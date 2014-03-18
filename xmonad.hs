@@ -2,7 +2,6 @@
 -- http://haskell.org/haskellwiki/Xmonad/Config_archive/31d1's_xmonad.hs
 import XMonad
 import Data.List    -- isInfixOf
-import qualified XMonad.StackSet as W
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
@@ -15,12 +14,10 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ToggleLayouts
-import XMonad.Layout.WindowArranger
 import XMonad.Layout.Mosaic
 import XMonad.Layout.Gaps
 
 import XMonad.Util.Run
-import XMonad.Util.Scratchpad
 import XMonad.Util.WorkspaceCompare
 import XMonad.Util.XSelection
 import XMonad.Util.EZConfig (additionalKeys)
@@ -76,12 +73,7 @@ myManageHook = composeAll
     --                                      x y w h
     , className =? "Unity-2d-panel" --> doIgnore
     , className =? "Unity-2d-launcher" --> doFloat
-    , scratchpadManageHook $ W.RationalRect 0 0 1 0.42
     , manageDocks ] <+> manageHook defaultConfig
-
-
--- let Gnome know about Xmonad actions
--- myLogHook = ewmhDesktopsLogHookCustom scratchpadFilterOutWorkspace >> updatePointer Nearest
 
 myWorkspaces = ["1:main", "2:web", "3:virtualbox", "4:whatever"]
 
