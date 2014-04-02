@@ -1,4 +1,4 @@
-Config { font = "xft:Source Code Pro:pixelsize=12"
+Config { font = "xft:Droid Sans"
        , allDesktops = True
        , overrideRedirect = True
        , borderColor = "black"
@@ -13,10 +13,11 @@ Config { font = "xft:Source Code Pro:pixelsize=12"
                     , Run Date "%a %b %_d %Y" "date" 36000
                     , Run Date "%H:%M" "brisbane" 600
                     , Run Com "/home/rjoost/bin/uvmeter" [] "uvmeter" 900
+                    , Run Com "/home/rjoost/bin/gtfs" ["BRIP BRSP NAIP CASP BRRW"] "gtfs" 300
                     , Run Network "br0" ["-L","0","-H","32","--normal","green","--high","red"] 10
                     , Run DateZone "%a %H:%M:%S" "de_DE.UTF-8" "UTC" "berlin" 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%br0% }{ <fc=#ee9a00>%date%</fc> %brisbane% - UV: %uvmeter% - %YBBN% | BER: %berlin% "
+       , template = "%gtfs%}{<fc=#ee9a00>%date% %brisbane%</fc> - UV: %uvmeter% - %YBBN% | BER: %berlin% "
        }
