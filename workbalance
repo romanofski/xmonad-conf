@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+import subprocess
+import datetime
+import decimal
+import calendar
+import re
+
+
+def print_workbalance():
+    start = datetime.date(2014, 04, 07)
+    today = datetime.date.today()
+    hourspw = decimal.Decimal(38)
+    output = subprocess.check_output(['hamster', 'search', '',
+                                      str(start), str(today)])
+    #
+    # We need only the summary information and simply expecting it to be
+    # the second before the end (which is just newlines).
+    #
+    summary = re.findall('\d+.\d+', output.splitlines()[-2])
+    actual_hours = sum([decimal.Decimal(x) for x in summary])
+
+    #
+    # We calculate the difference. We use the amount of days from the
+    # start which passed by, break it down to how many weeks that is and
+    # multiply the weeks by the number of hours to work.
+    #
+    # If the difference of days is less than a week, make it a week.
+    #
+    diff_days = (today - start).days
+    if diff_days <= 7:
+        diff_days = 7
+
+    expected_hours = (diff_days / decimal.Decimal(7)) * hourspw
+    diff = actual_hours - expected_hours
+    possible_hours = diff / get_remaining_days(today)
+    print("W:{0:.2f}/{1:.2f}").format(diff, possible_hours)
+
+
+def get_remaining_days(today):
+    weekday = calendar.weekday(today.year, today.month, today.day)
+    # week starts with 0 and we subtract two days for weekends
+    return 5 - weekday
+
+
+
+if __name__ == '__main__':
+    print_workbalance()
