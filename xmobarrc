@@ -13,11 +13,12 @@ Config { font = "xft:Droid Sans"
                     , Run Date "%a %b %_d %Y" "date" 36000
                     , Run Date "%H:%M" "brisbane" 600
                     , Run Com "/home/rjoost/bin/uvmeter" [] "uvmeter" 900
-                    , Run Com "/home/rjoost/bin/gtfs" ["BRIP BRSP NAIP CASP BRRW"] "gtfs" 300
+                    , Run Com "/home/rjoost/bin/gtfs" ["BRIP CAIP BRSP NAIP CASP BRRW"] "gtfs" 60
+                    , Run Com "/home/rjoost/bin/workbalance" [] "workbalance" 36000
                     , Run Network "br0" ["-L","0","-H","32","--normal","green","--high","red"] 10
                     , Run DateZone "%a %H:%M:%S" "de_DE.UTF-8" "UTC" "berlin" 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%gtfs%}{<fc=#ee9a00>%date% %brisbane%</fc> - UV: %uvmeter% - %YBBN% | BER: %berlin% "
+       , template = "%gtfs% | %workbalance%}{<fc=#ee9a00>%date% %brisbane%</fc> - UV: %uvmeter% - %YBBN% | BER: %berlin% "
        }
