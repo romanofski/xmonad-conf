@@ -89,4 +89,4 @@ main = do
             ewmhDesktopsStartup >> setWMName "LG3D"
             spawn "~/.xmonad/startup-hook"
         , workspaces         = myWorkspaces
-    } `additionalKeys` [((mod1Mask .|. shiftMask, xK_l), spawn "xautolock -locknow")]
+    } `additionalKeys` [((mod1Mask .|. controlMask, xK_l), spawn "xautolock -locknow")]
