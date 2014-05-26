@@ -2,14 +2,22 @@
 import subprocess
 import datetime
 import decimal
-import calendar
 import re
+from dateutil import rrule
+
+
+def get_workdays(start, end):
+    days_off = 5, 6
+    workdays = range(5)
+    days = rrule.rrule(rrule.DAILY, dtstart=start,
+                       until=end, byweekday=workdays)
+    return days.count()
 
 
 def print_workbalance():
     start = datetime.date(2014, 04, 07)
     today = datetime.date.today()
-    hourspw = decimal.Decimal(38)
+    hourspd = (decimal.Decimal(38) / 5)
     output = subprocess.check_output(['hamster', 'search', '',
                                       str(start), str(today)])
     #
@@ -20,27 +28,13 @@ def print_workbalance():
     actual_hours = sum([decimal.Decimal(x) for x in summary])
 
     #
-    # We calculate the difference. We use the amount of days from the
-    # start which passed by, break it down to how many weeks that is and
-    # multiply the weeks by the number of hours to work.
+    # We calculate the differences based on hours, not on days. So break
+    # the actual and expected hours down.
     #
-    # If the difference of days is less than a week, make it a week.
-    #
-    diff_days = (today - start).days
-    if diff_days <= 7:
-        diff_days = 7
-
-    expected_hours = (diff_days / decimal.Decimal(7)) * hourspw
+    diff_days = get_workdays(start, today)
+    expected_hours = diff_days * hourspd
     diff = actual_hours - expected_hours
-    possible_hours = diff / get_remaining_days(today)
-    print("W:{0:.2f}/{1:.2f}").format(diff, possible_hours)
-
-
-def get_remaining_days(today):
-    weekday = calendar.weekday(today.year, today.month, today.day)
-    # week starts with 0 and we subtract two days for weekends
-    return 5 - weekday
-
+    print("W: {0:.2f}").format(diff)
 
 
 if __name__ == '__main__':
