@@ -19,4 +19,5 @@ do
     save_start $i;
 done
 
+feh -z --bg-fill Pictures/*.jpg
 save_start "gnome-keyring-daemon" "--start"
