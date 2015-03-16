@@ -14,7 +14,7 @@ function save_start {
 #
 # Start my stuff.
 #
-for i in parcellite workrave pidgin hamster
+for i in parcellite hamster
 do
     save_start $i;
 done
