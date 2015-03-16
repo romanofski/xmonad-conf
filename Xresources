@@ -3,7 +3,6 @@ Xautolock.locker: "xlock"
 Xautolock.corners: +0-0
 Xautolock.cornerdelay: 3
 
-XLock.mode: matrix
 XLock.foreground: White
 XLock.background: Gray20
 XLock.echokeys: true
