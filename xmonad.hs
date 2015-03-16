@@ -12,37 +12,17 @@ import XMonad.Hooks.SetWMName
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
-import XMonad.Layout.Tabbed
 import XMonad.Layout.ToggleLayouts
 import XMonad.Layout.Mosaic
-import XMonad.Layout.Gaps
 
 import XMonad.Util.Run
-import XMonad.Util.WorkspaceCompare
-import XMonad.Util.XSelection
 import XMonad.Util.EZConfig (additionalKeys)
 
-import XMonad.Actions.UpdatePointer
 
-import System.IO
-import System.Exit
-
-
-myTab = defaultTheme
-    { activeColor         = "black"
-    , inactiveColor       = "black"
-    , urgentColor         = "yellow"
-    , activeBorderColor   = "orange"
-    , inactiveBorderColor = "#222222"
-    , urgentBorderColor   = "black"
-    , activeTextColor     = "orange"
-    , inactiveTextColor   = "#222222"
-    , urgentTextColor     = "yellow" }
-
-
-myLayout = avoidStruts $ toggleLayouts (noBorders Full)
-    (smartBorders (tiled ||| mosaic 2 [3,2] ||| Mirror tiled ||| layoutHints (tabbed shrinkText myTab)))
+myLayout = avoidStruts $ toggleLayouts (full)
+    (smartBorders (tiled ||| mosaic 2 [3,2] ||| full))
     where
+        full    = noBorders Full
         tiled   = layoutHints $ ResizableTall nmaster delta ratio []
         nmaster = 1
         delta   = 3/100
