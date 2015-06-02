@@ -18,6 +18,8 @@ import XMonad.Layout.Mosaic
 import XMonad.Util.Run
 import XMonad.Util.EZConfig (additionalKeys)
 
+import XMonad.Prompt
+import XMonad.Prompt.Shell
 
 myLayout = avoidStruts $ toggleLayouts (full)
     (smartBorders (tiled ||| mosaic 2 [3,2] ||| full))
@@ -57,6 +59,15 @@ myManageHook = composeAll
 
 myWorkspaces = ["1:main", "2:web", "3:virtualbox", "4:whatever"]
 
+myXPConfig = defaultXPConfig { fgColor = "#eee8d5" -- white
+                             , bgColor = "#002b36" -- bright black
+                             , bgHLight = "#d33682" -- magenta
+                             , fgHLight = "#eee8d5"
+                             , borderColor = "#002b36"
+                             , position = Bottom
+                             , font = "xft:Droid Sans"
+                             }
+
 main = do
     xmproc <- spawnPipe "~/.cabal/bin/xmobar -x 0"
     xmonad $ defaultConfig {
@@ -69,4 +80,6 @@ main = do
             ewmhDesktopsStartup >> setWMName "LG3D"
             spawn "~/.xmonad/startup-hook"
         , workspaces         = myWorkspaces
-    } `additionalKeys` [((mod1Mask .|. controlMask, xK_l), spawn "xautolock -locknow")]
+    } `additionalKeys` [((mod1Mask .|. controlMask, xK_l), spawn "xautolock -locknow")
+                        , ((mod1Mask, xK_p), shellPrompt myXPConfig)
+                        ]
