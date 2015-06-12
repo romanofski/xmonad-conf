@@ -2,6 +2,10 @@
 -- http://haskell.org/haskellwiki/Xmonad/Config_archive/31d1's_xmonad.hs
 import XMonad
 import Data.List    -- isInfixOf
+import Graphics.X11.ExtraTypes.XF86 (
+    xF86XK_AudioLowerVolume,
+    xF86XK_AudioRaiseVolume,
+    xF86XK_AudioMute)
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
@@ -66,6 +70,7 @@ myXPConfig = defaultXPConfig { fgColor = "#eee8d5" -- white
                              , borderColor = "#002b36"
                              , position = Bottom
                              , font = "xft:Droid Sans"
+                             , autoComplete = Just 1
                              }
 
 main = do
@@ -82,4 +87,7 @@ main = do
         , workspaces         = myWorkspaces
     } `additionalKeys` [((mod1Mask .|. controlMask, xK_l), spawn "xautolock -locknow")
                         , ((mod1Mask, xK_p), shellPrompt myXPConfig)
+                        , ((0, xF86XK_AudioRaiseVolume ), spawn "pactl set-sink-volume 0 +1.5%")
+                        , ((0, xF86XK_AudioLowerVolume ), spawn "pactl set-sink-volume 0 -1.5%")
+                        , ((0, xF86XK_AudioMute        ), spawn "pactl set-sink-mute 0 toggle")
                         ]

@@ -12,18 +12,23 @@ ALL_FILES = $(BIN_FILES) $(HOME_FILES) $(XMONAD_FILES)
 
 CURRENTDIR=$(shell pwd)
 
-
-install: $(ALL_FILES)
-	mkdir -p $(HOME)/bin
+install-xmonad: $(XMONAD_FILES)
 	mkdir -p $(HOME)/.xmonad
+	
+	for i in $(XMONAD_FILES); do \
+		install $(CURRENTDIR)/$$i $(HOME)/.xmonad/$$i; \
+	done; \
+
+install: $(ALL_FILES) install-xmonad
+	mkdir -p $(HOME)/bin
 	
 	# WAAAAH!
 	for i in $(HOME_FILES); do \
 		install $(CURRENTDIR)/$$i $(HOME)/.$$i; \
 	done; \
-  for i in $(XMONAD_FILES); do \
-		install $(CURRENTDIR)/$$i $(HOME)/.xmonad/$$i; \
-	done; \
+  for i in $(BIN_FILES); do \
+		install $(CURRENTDIR)/$$i $(HOME)/bin/$$i; \
+	done
 
 
 uninstall: $(INSTALLED_XMONAD_FILES) $(INSTALLED_HOME_FILES)
