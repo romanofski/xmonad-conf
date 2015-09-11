@@ -79,7 +79,7 @@ main = do
     xmonad $ defaultConfig {
         manageHook           = myManageHook
         , layoutHook         = myLayout
-        , terminal           = "terminator"
+        , terminal           = "xfce4-terminal"
         , logHook            = dynamicLogString defaultPP >>= xmonadPropLog
         , handleEventHook    = ewmhDesktopsEventHook
         , startupHook        = do
