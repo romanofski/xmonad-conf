@@ -20,4 +20,5 @@ do
 done
 
 feh -z --bg-fill Pictures/*.jpg
+save_start "xautolock"
 save_start "gnome-keyring-daemon" "--start"
