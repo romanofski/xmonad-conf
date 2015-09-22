@@ -5,7 +5,7 @@ Config { font = "xft:Droid Sans"
        , border = TopB
        , bgColor = "#073642"
        , fgColor = "grey"
-       , position = TopW L 100
+       , position = TopW L 90
        , lowerOnStart = True
        , persistent = False
        , hideOnStart = False
@@ -15,9 +15,10 @@ Config { font = "xft:Droid Sans"
                     , Run UVMeter "brisbane" ["-L", "3", "-H", "3", "--normal", "green", "--high", "red"] 900
                     , Run DynNetwork ["-L","0","-H","32","--normal","green","--high","red"] 10
                     , Run DateZone "%a %H:%M:%S" "de_DE.UTF-8" "UTC" "berlin" 10
-                    , Run XMonadLog
+                    , Run Com "gtfsbrisbane" ["-r", "BRIP CAIP BRSP NAIP CASP BRRW"] "gtfs" 600
+                    , Run Com "checkCalendar" ["--nocolor", "--nostarted", "--calendar=rjoost@redhat.com", "--calendar=Beaker Team Calendar"] "calendar" 600
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% | %gtfs% | %workbalance%}{<fc=#ee9a00>%date% %brisbane%</fc> - UV: %uv brisbane% - %YBBN% | BER: %berlin% "
+       , template = "%gtfs% | %workbalance%}{%calendar% <fc=#ee9a00>%date% %brisbane%</fc> - UV: %uv brisbane% - %YBBN% | BER: %berlin% "
        }
