@@ -17,6 +17,7 @@ Config { font = "xft:Droid Sans"
                     , Run DateZone "%a %H:%M:%S" "de_DE.UTF-8" "UTC" "berlin" 10
                     , Run Com "gtfsbrisbane" ["-r", "BRIP CAIP BRSP NAIP CASP BRRW"] "gtfs" 600
                     , Run Com "checkCalendar" ["--nocolor", "--nostarted", "--calendar=rjoost@redhat.com", "--calendar=Beaker Team Calendar"] "calendar" 600
+                    , Run Com "workbalance" [] "workbalance" 1500
                     ]
        , sepChar = "%"
        , alignSep = "}{"
