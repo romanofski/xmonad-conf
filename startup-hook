@@ -22,6 +22,7 @@ done
 save_start "trayer" "--edge top" "--align right" "--SetDockType true"\
     "--SetPartialStrut true" "--expand true" "--widthtype percent"\
     "--width 10" "--transparent true" "--tint 0x000000"
+save_start "xmobar"
 feh -z --bg-fill Pictures/*.jpg
 save_start "xautolock"
 save_start "gnome-keyring-daemon" "--start"

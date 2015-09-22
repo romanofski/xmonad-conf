@@ -75,7 +75,6 @@ myXPConfig = defaultXPConfig { fgColor = "#eee8d5" -- white
                              }
 
 main = do
-    xmproc <- spawnPipe "~/.local/bin/xmobar -x 0"
     xmonad $ defaultConfig {
         manageHook           = myManageHook
         , layoutHook         = myLayout
