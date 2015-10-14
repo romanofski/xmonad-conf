@@ -2,6 +2,8 @@ Xautolock.time: 1
 Xautolock.locker: "xlock"
 Xautolock.corners: +0-0
 Xautolock.cornerdelay: 3
+Xautolock.notify: 30
+Xautolock.notifier: "notify-send -u critical -t 10000 -- 'Locking screen in 30 seconds'"
 
 XLock.foreground: White
 XLock.background: Gray20
