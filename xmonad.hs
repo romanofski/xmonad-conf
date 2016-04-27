@@ -67,7 +67,7 @@ myXPConfig = defaultXPConfig { fgColor = "#eee8d5" -- white
                              , fgHLight = "#eee8d5"
                              , borderColor = "#002b36"
                              , position = Bottom
-                             , font = "xft:Droid Sans"
+                             , font = "xft:Droid Sans:size=8"
                              , autoComplete = Just 1
                              }
 
@@ -77,6 +77,7 @@ main = do
         manageHook           = myManageHook
         , layoutHook         = myLayout
         , terminal           = "xfce4-terminal"
+        , borderWidth        = 3
         , logHook            = dynamicLogString defaultPP >>= xmonadPropLog
         , handleEventHook    = ewmhDesktopsEventHook
         , startupHook        = do
