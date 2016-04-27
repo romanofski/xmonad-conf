@@ -1,4 +1,4 @@
-Config { font = "xft:Droid Sans"
+Config { font = "xft:Droid Sans:size=8"
        , allDesktops = True
        , overrideRedirect = True
        , borderColor = "black"
