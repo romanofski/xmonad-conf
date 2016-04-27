@@ -2,10 +2,7 @@
 -- http://haskell.org/haskellwiki/Xmonad/Config_archive/31d1's_xmonad.hs
 import XMonad
 import Data.List    -- isInfixOf
-import Graphics.X11.ExtraTypes.XF86 (
-    xF86XK_AudioLowerVolume,
-    xF86XK_AudioRaiseVolume,
-    xF86XK_AudioMute)
+import Graphics.X11.ExtraTypes.XF86
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
@@ -88,7 +85,10 @@ main = do
         , workspaces         = myWorkspaces
     } `additionalKeys` [((mod1Mask .|. controlMask, xK_l), spawn "xautolock -locknow")
                         , ((mod1Mask, xK_p), shellPrompt myXPConfig)
-                        , ((0, xF86XK_AudioRaiseVolume ), spawn "pactl set-sink-volume 0 +1.5%")
-                        , ((0, xF86XK_AudioLowerVolume ), spawn "pactl set-sink-volume 0 -1.5%")
-                        , ((0, xF86XK_AudioMute        ), spawn "pactl set-sink-mute 0 toggle")
+                        , ((0, xF86XK_AudioRaiseVolume ), spawn "pactl set-sink-volume @DEFAULT_SINK@ +2%")
+                        , ((0, xF86XK_AudioLowerVolume ), spawn "pactl set-sink-volume @DEFAULT_SINK@ -2%")
+                        , ((0, xF86XK_AudioMute        ), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+                        , ((0, xF86XK_AudioPause     ), spawn "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
+                        , ((0, xF86XK_MonBrightnessDown     ), spawn "xbacklight -dec 20%")
+                        , ((0, xF86XK_MonBrightnessUp       ), spawn "xbacklight -inc 20%")
                         ]
