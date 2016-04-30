@@ -1,7 +1,6 @@
 .PHONY: install uninstall
 
-HOME_FILES = xmobarrc \
-						 xsession
+HOME_FILES = xsession
 INSTALLED_HOME_FILES = $(HOME_FILES:%=$(HOME)/.%)
 
 XMONAD_FILES = xmonad.hs \
